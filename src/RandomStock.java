@@ -10,4 +10,6 @@ public class RandomStock {
 		this.stockLevel = stockLevel;
 	}
 	
+	//random stock generation, set stock level using random decrements to a current stock value returned from products, send to gui for stock drop simulation
+	
 }

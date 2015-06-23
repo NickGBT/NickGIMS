@@ -9,6 +9,7 @@ public class Product {
 	private int dateAdded;
 	private int dateLastUpdated;
 	private int cost;
+	
 	String getSupplier() {
 		return supplier;
 	}
