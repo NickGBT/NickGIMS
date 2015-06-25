@@ -23,7 +23,7 @@ public class DatabaseConnection {
 		
 		//create
 		System.out.println("Inserting records to table");
-		stmt = conn createStatement();
+		stmt = conn.createStatement();
 		String sql = "INSERT INTO Languages" + "VALUES ()";
 		stmt.executeUpdate(sql);
 		System.out.println("Inserted records into the table...");
@@ -36,7 +36,9 @@ public class DatabaseConnection {
 		while (rs.next()){
 			int id = rs.getInt("id");
 			String name = rs.getString("name");
-			System.out.println("ID: " + id + "name: " + ", date: " + date);
+			int date = rs.getInt("date");
+			int dateAdded = rs.getInt("dateAdded");
+			System.out.println("ID: " + id + "name: " + name + ", date: " + date + "Date added: " + dateAdded);
 		}
 		rs.close();
 		
