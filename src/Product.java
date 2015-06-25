@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 public class Product {
 	private String productName;
@@ -6,21 +9,22 @@ public class Product {
 	private int productID;
 	private int stockLevel;
 	private int criticalStockLevel;
-	private int dateAdded;
+	private LocalDateTime dateAdded;
 	private int dateLastUpdated;
 	private int cost;
 	
 	String getSupplier() {
 		return supplier;
 	}
-	int setDateAdded() {
-		this.dateAdded = dateAdded;
+	void setDateAdded() {
+		dateAdded = LocalDateTime.now();
 	}
 	int getDateLastUpdated() {
 		return dateLastUpdated;
 	}
 	void setProductName(String productName) {
 		this.productName = productName;
+		
 	}
 	void setProductType(String productType) {
 		this.productType = productType;
