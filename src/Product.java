@@ -13,8 +13,8 @@ public class Product {
 	String getSupplier() {
 		return supplier;
 	}
-	int getDateAdded() {
-		return dateAdded;
+	int setDateAdded() {
+		this.dateAdded = dateAdded;
 	}
 	int getDateLastUpdated() {
 		return dateLastUpdated;
