@@ -6,6 +6,7 @@ public class StockPredictor {
 	private int StockReportDates;
 	private int predictedDateStart;
 	private int predictedDateEnd;
+	private int predictivePeriod;
 	String getProduct() {
 		return product;
 	}
@@ -14,6 +15,9 @@ public class StockPredictor {
 	}
 	int getCriticalStockLevel() {
 		return criticalStockLevel;
+	}
+	void setPredictivePeriod(int predictivePeriod){
+		this.predictivePeriod = predictivePeriod;
 	}
 	int getStockReportDates() {
 		return StockReportDates;
@@ -24,7 +28,7 @@ public class StockPredictor {
 	void setPredictedDateEnd(int predictedDateEnd) {
 		this.predictedDateEnd = predictedDateEnd;
 	}
-	
+	//Average out the stock levels between the predicted dates in order to predict the drop in stock (over a set period)
 	
 
 }
