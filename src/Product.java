@@ -13,6 +13,8 @@ public class Product {
 	private int dateLastUpdated;
 	private int cost;
 	
+	//creates the product object to be called and created through the IMSGUI class or the IMSGUIListener class
+	
 	String getSupplier() {
 		return supplier;
 	}

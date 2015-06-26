@@ -19,6 +19,10 @@ public class StockReport {
 		return date;
 	}
 	
+	private void reportGetter(String inString){
+		
+	};
+	
 	
 	
 }
