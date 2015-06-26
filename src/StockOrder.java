@@ -4,6 +4,7 @@ public class StockOrder {
 	private String supplier;
 	private String product;
 	private String orderID;
+	private int dummyVariable;
 	
 	int getDate() {
 		return date;
@@ -18,6 +19,10 @@ public class StockOrder {
 		return orderID;
 	}
 
+	void setdummyVariable() {
+		this.dummyVariable = dummyVariable;
+	}
+	
 	//Jira test
 
 }
