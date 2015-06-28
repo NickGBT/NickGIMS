@@ -4,12 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class DatabaseConnection {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/myurl";
-	
 	static final String USER = "username";
 	static final String PASS = "password";
 	
