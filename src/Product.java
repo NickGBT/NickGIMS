@@ -7,7 +7,7 @@ public class Product {
 	private String productType;
 	private String supplier;
 	private int productID;
-	private int stockLevel;
+	int stockLevel;
 	private int criticalStockLevel;
 	private LocalDateTime dateAdded;
 	private int dateLastUpdated;
@@ -93,11 +93,12 @@ public class Product {
 		return cost;
 	}
 
+	//arraylist containing the product objects
 	public static ArrayList<Product> getAllProducts() {
 		return allProducts;
 	}
 	
-	//creates the product object to be called and created through the IMSGUI class or the IMSGUIListener class
+	//creates the product object to be called and created through the IMSGUI class or the ProductModifier class
 	
 
 	

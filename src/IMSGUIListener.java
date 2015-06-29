@@ -7,10 +7,15 @@ import javax.swing.JTable;
 class IMSGUIListener implements ActionListener{
 	private JTable productTable;
 	private IMSGUI referencedGUI;
+	
 	public IMSGUIListener(JTable productTable, IMSGUI referencedGUI){
+		
 		this.productTable = productTable;
+				
 		this.referencedGUI = referencedGUI;
+		
 	}
+	
 	@Override
 	public void actionPerformed (ActionEvent ae){
 				
@@ -44,8 +49,14 @@ class IMSGUIListener implements ActionListener{
 		StockReport.generateReport();
 		
 		break;
+		
+		case "Simulate stock drop": ;
+		
+		RandomStockViewer stock = new RandomStockViewer();
 		}
+		
 		//calls the referenced GUI and updates the table once the modifier gui is closed.
 		referencedGUI.updateTable();
 	}
 }
+

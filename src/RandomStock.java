@@ -1,22 +1,22 @@
 import java.util.Random;
 public class RandomStock {
+	
 	private String product;
-	private int stockLevel;
+	
+	int stockLevelDecrement;
 	
 	String getProduct() {
 		return product;
 	}
-	void setStockLevel(int stockLevel) {
-		this.stockLevel = stockLevel;
-	}
-	
+		
 	public static final void main(String... aArgs) {
-		log("Generating random integers between 1 and 10");
+		log("Generating random integer between 1 and 10");
 		
 		int START = 1;
+		
 		int END = 10;
 		Random random = new Random();
-		for (int idx = 1; idx <= 10; ++idx){
+		for (int idx = 1; idx <= 1; ++idx){
 			getRandomInteger(START, END, random);
 		}
 		
@@ -31,8 +31,8 @@ public class RandomStock {
 		long range = (long) aEnd - (long) aStart + 1;
 		// calculate a fraction of the range, 0 <- frac < range
 		long fraction = (long) (range * aRandom.nextDouble());
-		int stockLevel = (int)(fraction + aStart);
-		log("Generated : " + stockLevel);
+		int stockLevelDecrement = (int)(fraction + aStart);
+		log("Generated : " + stockLevelDecrement);
 	}
 	
 	private static void log(String aMessage) {

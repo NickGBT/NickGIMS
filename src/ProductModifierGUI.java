@@ -50,6 +50,8 @@ public class ProductModifierGUI extends JDialog {
 	
 	private void prepareGUI() {
 		
+		this.setPreferredSize(new Dimension(500, 500));
+		
 		this.setModal(true);
 		
 		this.setLayout ( new FlowLayout());
@@ -57,32 +59,32 @@ public class ProductModifierGUI extends JDialog {
 		this.add (new JLabel ("Name"));
 		nameTextBox = new JTextField(product.getProductName());
 		this.add (nameTextBox);
-		nameTextBox.setPreferredSize(new Dimension(50,15));
+		nameTextBox.setPreferredSize(new Dimension(100,15));
 		
 		this.add (new JLabel ("Type"));
 		typeTextBox = new JTextField(product.getProductType());
 		this.add (typeTextBox);
-		typeTextBox.setPreferredSize(new Dimension(50,15));
+		typeTextBox.setPreferredSize(new Dimension(100,15));
 		
 		this.add (new JLabel ("Cost"));
 		costTextBox = new JTextField(product.getCost()+"");
 		this.add (costTextBox);
-		costTextBox.setPreferredSize(new Dimension(50,15));
+		costTextBox.setPreferredSize(new Dimension(100,15));
 		
 		this.add (new JLabel ("Stock Level"));
 		stockTextBox = new JTextField(product.getStockLevel()+"");
 		this.add (stockTextBox);
-		stockTextBox.setPreferredSize(new Dimension(50,15));
+		stockTextBox.setPreferredSize(new Dimension(100,15));
 		
 		this.add (new JLabel ("Critical Stock Level"));
 		criticalStockTextBox = new JTextField(product.getCriticalStockLevel()+"");
 		this.add (criticalStockTextBox);
-		criticalStockTextBox.setPreferredSize(new Dimension(50,15));
+		criticalStockTextBox.setPreferredSize(new Dimension(100,15));
 		
 		this.add (new JLabel ("Supplier"));
 		supplierTextBox = new JTextField(product.getSupplier());
 		this.add (supplierTextBox);
-		supplierTextBox.setPreferredSize(new Dimension(50,15));
+		supplierTextBox.setPreferredSize(new Dimension(100,15));
 		
 
 		

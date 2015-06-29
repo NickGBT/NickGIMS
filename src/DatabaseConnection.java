@@ -22,7 +22,7 @@ public class DatabaseConnection {
 		//create
 		System.out.println("Inserting records to table");
 		stmt = conn.createStatement();
-		String sql = "INSERT INTO Languages" + "VALUES ()";
+		String sql = "INSERT INTO Product" + "VALUES ()";
 		stmt.executeUpdate(sql);
 		System.out.println("Inserted records into the table...");
 		
@@ -43,7 +43,7 @@ public class DatabaseConnection {
 		//update
 		System.out.println("Creating statement...");
 		stmt = conn.createStatement();
-		String sql3 = "UPDATE Languages " + "SET date = WHERE id in (1, 2)";
+		String sql3 = "UPDATE Product " + "SET date = WHERE id in (1, 2)";
 		stmt.executeUpdate(sql3);
 		
 		//delete
