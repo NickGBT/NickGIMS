@@ -124,15 +124,14 @@ public class IMSGUI{
 	
 	//Calls the table and refreshes the list
 	public void updateTable() {
-		
+				
 		productTableModel.setRowCount(0);
 		//loops through all the rows in the table to refresh them
 		for (Product p : productList){
 			
 			productTableModel.addRow(new Object []{p.getProductID(), p.getProductName(),p.getProductType(),p.getDateAdded(),p.getDateLastUpdated(),p.getCost(),p.getStockLevel(),p.getCriticalStockLevel(),p.getSupplier()});
-			
-			DatabaseConnection.insertToTable(p.getProductID(), p.getProductName(),p.getProductType(),p.getDateLastUpdated(),p.getCost(),p.getStockLevel(),p.getCriticalStockLevel(),p.getSupplier());
-		}
+									
+		}		
 		
 	}
 	//public void belowThresholdAlert() {

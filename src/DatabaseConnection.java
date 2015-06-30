@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,20 +9,20 @@ public class DatabaseConnection {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/mydb";
-	static final String USER = "InvManager";
+	static final String USER = "root";
 	static final String PASS = "casbah";
 	
-	static Connection conn = null;
-	static Statement stmt = null;
-	ResultSet rs = null;
+	Connection conn = null;
 	
-	public void accessDB(){
+	
+	public void accessDB() throws Exception{
 
 		try{
+		ResultSet rs = null;
 		Class.forName("com.mysql.jdbc.Driver");
 		System.out.println("Connecting to database...");
 		conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		
+		Statement stmt = null;
 		//create
 		//System.out.println("Inserting records to table");		
 		stmt = conn.createStatement();
@@ -69,15 +70,32 @@ public class DatabaseConnection {
 		System.out.println("Connection closed.");
 	}
 	
-	public static void insertToTable(int ProductID, String ProductName ,String ProductType, String DateLastUpdated,
+	public void insertToTable(int ProductID, String ProductName ,String ProductType, String DateLastUpdated,
 			int Cost, int StockLevel, int CriticalStockLevel ,String Supplier ) {
 		
 		System.out.println("Creating statement...");
-		try {
-			stmt = conn.createStatement();
-			String sql = "INSERT INTO product" + "VALUES (" + ProductID + ", " + ProductName + ", " + ProductType + ", " + DateLastUpdated +
-					", " + Cost + ", " + StockLevel + ", " + CriticalStockLevel + ", " + Supplier + ")";
-			stmt.executeUpdate(sql);
+		try {	
+			
+			PreparedStatement stmt = null;
+
+			try { 
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			} catch (SQLException e) {
+				
+			}
+			
+			String sql = "INSERT INTO product (productName, productType, productCost, productStockLevel, productCriticalStockLevel, dateLastUpdated, productSupplier)" +  "VALUES (? , ?, ?, ? , ?, ?, ?";
+			stmt = conn.prepareStatement(sql);
+			
+			
+			stmt.setString(1, ProductName);
+			stmt.setString(2, ProductType);
+			stmt.setInt(3, Cost);
+			stmt.setInt(4, StockLevel);
+			stmt.setInt(5, CriticalStockLevel);
+			stmt.setString(6, DateLastUpdated);
+			
+			stmt.executeUpdate();
 			System.out.println("Inserted records into the table...");
 			
 		} catch (SQLException e) {
