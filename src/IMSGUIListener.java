@@ -58,9 +58,7 @@ class IMSGUIListener implements ActionListener{
 		
 		case "Refresh table": ;
 		
-		IMSGUI updateTable = new IMSGUI();
-		
-		updateTable.updateTable();
+		referencedGUI.updateTable();
 		
 		break;
 		}

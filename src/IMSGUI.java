@@ -1,11 +1,8 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.Event;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 
@@ -26,6 +23,8 @@ public class IMSGUI{
 	private JTable productTable;
 	private DefaultTableModel productTableModel;
 	private IMSGUIListener buttonListener;
+	
+	
 	public IMSGUI (ArrayList<Product> productList){
 		
 		this.productList = productList;
@@ -36,7 +35,8 @@ public class IMSGUI{
 		
 		mainBox = new JFrame("Inventory Management System");
 		mainBox.setSize(950, 500);
-		mainBox.setLayout(new GridLayout(3,0)); //layout setter		
+		mainBox.setLayout(new GridLayout(3,0)); //layout setter	
+		mainBox.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//adding the components to the GUI
 		frameLabel = new JLabel("",JLabel.CENTER);
@@ -118,6 +118,7 @@ public class IMSGUI{
 	
 	//Main method to call the arrayList and other components.
 	public static void main (String args[]){
+		
 		IMSGUI sD = new IMSGUI(Product.allProducts);
 	}
 	
@@ -130,7 +131,9 @@ public class IMSGUI{
 			
 			productTableModel.addRow(new Object []{p.getProductID(), p.getProductName(),p.getProductType(),p.getDateAdded(),p.getDateLastUpdated(),p.getCost(),p.getStockLevel(),p.getCriticalStockLevel(),p.getSupplier()});
 			
+			DatabaseConnection.insertToTable(p.getProductID(), p.getProductName(),p.getProductType(),p.getDateLastUpdated(),p.getCost(),p.getStockLevel(),p.getCriticalStockLevel(),p.getSupplier());
 		}
+		
 	}
 	//public void belowThresholdAlert() {
 		

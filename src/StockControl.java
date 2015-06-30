@@ -1,7 +1,4 @@
 
-import java.awt.Component;
-
-import javax.swing.*;
 
 public class StockControl {
 	private String alertType;
@@ -9,10 +6,7 @@ public class StockControl {
 	private int stockLevel;
 	private int criticalStockLevel;
 	private int previousStockLevel;
-	private int changeInStockLevel;
-	
-	private IMSGUI imsGUI;
-	 
+	private int changeInStockLevel;	 
 	
 	String getAlertType() {
 		return alertType;

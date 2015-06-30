@@ -13,7 +13,7 @@ public class StockReport {
 		//returns values from the arrayList
 		Properties out = new Properties();
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd at HH-mm-ss");
 		Date date = new Date();
 		Calendar rightNow = Calendar.getInstance();	
 		
@@ -22,7 +22,7 @@ public class StockReport {
 			
 		};
 		try {
-			out.store(new FileOutputStream(System.out.println((dateFormat.format(rightNow.getTime()))) + "Report.txt" ), "Generated stock report.");
+			out.store(new FileOutputStream(((dateFormat.format(rightNow.getTime()))) + " Report.txt" ), "Generated stock report.");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
