@@ -20,6 +20,7 @@ public class IMSGUI{
 	private JButton editButton;
 	private JButton generateReportButton;
 	private JButton randomiserButton;
+	private JButton refreshButton;
 	private ArrayList<Product> productList;
 	private JScrollPane scrollPane;
 	private JTable productTable;
@@ -34,7 +35,7 @@ public class IMSGUI{
 	private void prepareGUI() {
 		
 		mainBox = new JFrame("Inventory Management System");
-		mainBox.setSize(800, 500);
+		mainBox.setSize(950, 500);
 		mainBox.setLayout(new GridLayout(3,0)); //layout setter		
 		
 		//adding the components to the GUI
@@ -66,7 +67,7 @@ public class IMSGUI{
 		productTable.getColumnModel().getColumn(4).setPreferredWidth(100);
 		productTable.getColumnModel().getColumn(5).setPreferredWidth(100);
 		productTable.getColumnModel().getColumn(6).setPreferredWidth(150);
-		productTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+		productTable.getColumnModel().getColumn(7).setPreferredWidth(150);
 		productTable.getColumnModel().getColumn(8).setPreferredWidth(100);
 		
 		//Adding the buttonListener
@@ -84,6 +85,8 @@ public class IMSGUI{
 		generateReportButton.addActionListener(buttonListener);
 		randomiserButton = new JButton("Simulate stock drops");
 		randomiserButton.addActionListener(buttonListener);
+		refreshButton = new JButton("Refresh table");
+		refreshButton.addActionListener(buttonListener);
 		controlPanel = new JPanel();
 		controlPanel.setLayout(new FlowLayout());
 		
@@ -95,7 +98,8 @@ public class IMSGUI{
 		controlPanel.add(editButton);
 		controlPanel.add(generateReportButton);
 		controlPanel.add(randomiserButton);
-		controlPanel.setSize(400,100);
+		controlPanel.add(refreshButton);
+		controlPanel.setSize(600,100);
 		mainBox.setVisible(true);
 
 	}
@@ -128,5 +132,13 @@ public class IMSGUI{
 			
 		}
 	}
+	//public void belowThresholdAlert() {
+		
+		//if (stockLevel < criticalStockLevel){
+			
+			//JOptionPane.showMessageDialog(getMainBox(), stockLevel + " is below the critical stock level!, please order new stock.");
+			
+		//}
+	//}
 	
 }

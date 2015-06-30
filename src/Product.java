@@ -9,8 +9,8 @@ public class Product {
 	private int productID;
 	int stockLevel;
 	private int criticalStockLevel;
-	private LocalDateTime dateAdded;
-	private int dateLastUpdated;
+	private String dateAdded;
+	private String dateLastUpdated;
 	private int cost;
 	
 	//Creating arraylist for the products within the product class
@@ -41,11 +41,11 @@ public class Product {
 		this.criticalStockLevel = criticalStockLevel;
 	}
 
-	public void setDateAdded(LocalDateTime dateAdded) {
+	public void setDateAdded(String dateAdded) {
 		this.dateAdded = dateAdded;
 	}
 
-	public void setDateLastUpdated(int dateLastUpdated) {
+	public void setDateLastUpdated(String dateLastUpdated) {
 		this.dateLastUpdated = dateLastUpdated;
 	}
 
@@ -81,11 +81,11 @@ public class Product {
 		return criticalStockLevel;
 	}
 
-	public LocalDateTime getDateAdded() {
+	public String getDateAdded() {
 		return dateAdded;
 	}
 
-	public int getDateLastUpdated() {
+	public String getDateLastUpdated() {
 		return dateLastUpdated;
 	}
 

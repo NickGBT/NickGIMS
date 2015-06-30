@@ -53,6 +53,16 @@ class IMSGUIListener implements ActionListener{
 		case "Simulate stock drop": ;
 		
 		RandomStockViewer stock = new RandomStockViewer();
+		
+		break;
+		
+		case "Refresh table": ;
+		
+		IMSGUI updateTable = new IMSGUI();
+		
+		updateTable.updateTable();
+		
+		break;
 		}
 		
 		//calls the referenced GUI and updates the table once the modifier gui is closed.

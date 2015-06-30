@@ -42,15 +42,5 @@ public class StockControl {
 		return changeInStockLevel;
 		
 	}
-	
-	public void belowThresholdAlert() {
-		
-		if (stockLevel < criticalStockLevel){
-			
-			JOptionPane.showMessageDialog(imsGUI.getMainBox(), stockLevel + " is below the critical stock level!, please order new stock.");
-			
-		}
-								
-	}
-
+									
 }

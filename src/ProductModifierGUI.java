@@ -1,7 +1,12 @@
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -9,6 +14,9 @@ import javax.swing.JTextField;
 
 public class ProductModifierGUI extends JDialog {
 	
+	static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	static Date date = new Date();
+	Calendar rightNow = Calendar.getInstance();	
 	private Product product;
 	public Product getProduct() {
 		
@@ -19,10 +27,11 @@ public class ProductModifierGUI extends JDialog {
 		product.setStockLevel(Integer.parseInt(stockTextBox.getText()));
 		product.setCriticalStockLevel(Integer.parseInt(criticalStockTextBox.getText()));
 		product.setSupplier(supplierTextBox.getText());
+		product.setDateLastUpdated(dateFormat.format(rightNow.getTime()));
 		return product;
 		
 	}
-
+	private JFrame mainBox;
 	private JTextField nameTextBox;
 	private JTextField typeTextBox;
 	private JTextField costTextBox;
@@ -42,19 +51,22 @@ public class ProductModifierGUI extends JDialog {
 		
 		product = new Product();
 		
+		mainBox = new JFrame();
+		
+		mainBox.setLayout(new GridLayout(3,0));
+		
 		this.prepareGUI();
-		
-		
+						
 		
 	}
 	
 	private void prepareGUI() {
-		
-		this.setPreferredSize(new Dimension(500, 500));
+				
+		this.setSize(1000,200);
 		
 		this.setModal(true);
 		
-		this.setLayout ( new FlowLayout());
+		this.setLayout ( new GridLayout(3, 3));
 		
 		this.add (new JLabel ("Name"));
 		nameTextBox = new JTextField(product.getProductName());
