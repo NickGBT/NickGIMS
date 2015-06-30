@@ -9,20 +9,24 @@ import java.util.Properties;
 
 public class StockReport {
 
-	public static void generateReport(){
-		//returns values from the arrayList
+	public static void generateReport() {
+		// returns values from the arrayList
 		Properties out = new Properties();
-		
+
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd at HH-mm-ss");
 		Date date = new Date();
-		Calendar rightNow = Calendar.getInstance();	
-		
-		for (Product p : Product.allProducts){
-			out.setProperty(p.getProductName(), p.getStockLevel()+"");
-			
-		};
+		Calendar rightNow = Calendar.getInstance();
+
+		for (Product p : Product.allProducts) {
+			out.setProperty(p.getProductName(), p.getStockLevel() + "");
+
+		}
+		;
 		try {
-			out.store(new FileOutputStream(((dateFormat.format(rightNow.getTime()))) + " Report.txt" ), "Generated stock report.");
+			out.store(
+					new FileOutputStream(
+							((dateFormat.format(rightNow.getTime())))
+									+ " Report.txt"), "Generated stock report.");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,6 +34,6 @@ public class StockReport {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

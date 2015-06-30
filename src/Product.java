@@ -12,10 +12,10 @@ public class Product {
 	private String dateAdded;
 	private String dateLastUpdated;
 	private int cost;
-	
-	//Creating arraylist for the products within the product class
-	
-	public static ArrayList <Product> allProducts = new ArrayList <Product>();
+
+	// Creating arraylist for the products within the product class
+
+	public static ArrayList<Product> allProducts = new ArrayList<Product>();
 
 	public void setProductName(String productName) {
 		this.productName = productName;
@@ -93,13 +93,12 @@ public class Product {
 		return cost;
 	}
 
-	//arraylist containing the product objects
+	// arraylist containing the product objects
 	public static ArrayList<Product> getAllProducts() {
 		return allProducts;
 	}
-	
-	//creates the product object to be called and created through the IMSGUI class or the ProductModifier class
-	
 
-	
+	// creates the product object to be called and created through the IMSGUI
+	// class or the ProductModifier class
+
 }
