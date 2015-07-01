@@ -13,7 +13,7 @@ public class StockOrder {
 		// returns values from the arrayList that are at the critical stock leve
 		Properties out = new Properties();
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd at HH-mm-ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Date date = new Date();
 		Calendar rightNow = Calendar.getInstance();
 
@@ -29,7 +29,7 @@ public class StockOrder {
 			out.store(
 					new FileOutputStream(
 							((dateFormat.format(rightNow.getTime())))
-									+ " Report.txt"), "Generated stock report.");
+									+ " Stock Order.txt"), "Generated stock report.");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

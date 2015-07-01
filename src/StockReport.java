@@ -13,7 +13,7 @@ public class StockReport {
 		// returns values from the arrayList
 		Properties out = new Properties();
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd at HH-mm-ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Date date = new Date();
 		Calendar rightNow = Calendar.getInstance();
 
