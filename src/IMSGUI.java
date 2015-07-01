@@ -17,6 +17,7 @@ public class IMSGUI {
 	private JButton generateReportButton;
 	private JButton randomiserButton;
 	private JButton refreshButton;
+	private JButton generateStockOrderButton;
 	private ArrayList<Product> productList;
 	private JScrollPane scrollPane;
 	private JTable productTable;
@@ -85,6 +86,8 @@ public class IMSGUI {
 		randomiserButton.addActionListener(buttonListener);
 		refreshButton = new JButton("Refresh table");
 		refreshButton.addActionListener(buttonListener);
+		generateStockOrderButton = new JButton("Generate stock order");
+		generateStockOrderButton.addActionListener(buttonListener);
 		controlPanel = new JPanel();
 		controlPanel.setLayout(new FlowLayout());
 
@@ -97,6 +100,7 @@ public class IMSGUI {
 		controlPanel.add(generateReportButton);
 		controlPanel.add(randomiserButton);
 		controlPanel.add(refreshButton);
+		controlPanel.add(generateStockOrderButton);
 		controlPanel.setSize(600, 100);
 		mainBox.setVisible(true);
 
@@ -127,7 +131,7 @@ public class IMSGUI {
 
 		productTableModel.setRowCount(0);
 		// loops through all the rows in the table to refresh them
-		for (Product p : productList) {
+		for (Product p : productList) {			
 
 			productTableModel.addRow(new Object[] { p.getProductID(),
 					p.getProductName(), p.getProductType(), p.getDateAdded(),
@@ -138,14 +142,17 @@ public class IMSGUI {
 
 	}
 
+
 	public static void belowThresholdAlert(Product p) {
 
 		if (p.getStockLevel() < p.getCriticalStockLevel()) {
 
 			JOptionPane
 					.showMessageDialog(
+
 							null,
 							"ProductID: " + p.getProductID() + ", " + p.getProductName() + "'s Stock: " + p.getStockLevel()	+ " is below the critical stock level!, please order new stock.");
+
 
 		}
 	}

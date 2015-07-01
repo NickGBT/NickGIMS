@@ -33,7 +33,7 @@ class IMSGUIListener implements ActionListener {
 			Product.allProducts.add(modifier.getProduct());
 
 			DatabaseConnection.insertDatabase(modifier.getProduct());
-			
+
 			break;
 
 		case "Edit":
@@ -43,7 +43,7 @@ class IMSGUIListener implements ActionListener {
 					Product.allProducts.get(productTable.getSelectedRow()));
 
 			editor.setVisible(true);
-			
+
 			DatabaseConnection.updateDatabase(editor.getProduct());
 
 			Product.allProducts.set(productTable.getSelectedRow(),
@@ -61,7 +61,7 @@ class IMSGUIListener implements ActionListener {
 		case "Simulate stock drop":
 			;
 
-			//RandomStockViewer stock = new RandomStockViewer();
+			// RandomStockViewer stock = new RandomStockViewer();
 
 			break;
 
@@ -69,6 +69,15 @@ class IMSGUIListener implements ActionListener {
 			;
 
 			DatabaseConnection.updateIMSGUI();
+
+			break;
+
+		case "Generate stock order":
+			;
+
+			productTable.getSelectedRow();
+
+			StockOrder.generateStockOrder();
 
 			break;
 		}
