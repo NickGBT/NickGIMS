@@ -17,6 +17,7 @@ public class IMSGUI {
 	private JButton generateReportButton;
 	private JButton randomiserButton;
 	private JButton refreshButton;
+	private JButton generateStockOrderButton;
 	private ArrayList<Product> productList;
 	private JScrollPane scrollPane;
 	private JTable productTable;
@@ -85,6 +86,8 @@ public class IMSGUI {
 		randomiserButton.addActionListener(buttonListener);
 		refreshButton = new JButton("Refresh table");
 		refreshButton.addActionListener(buttonListener);
+		generateStockOrderButton = new JButton("Generate stock order");
+		generateStockOrderButton.addActionListener(buttonListener);
 		controlPanel = new JPanel();
 		controlPanel.setLayout(new FlowLayout());
 
@@ -97,6 +100,7 @@ public class IMSGUI {
 		controlPanel.add(generateReportButton);
 		controlPanel.add(randomiserButton);
 		controlPanel.add(refreshButton);
+		controlPanel.add(generateStockOrderButton);
 		controlPanel.setSize(600, 100);
 		mainBox.setVisible(true);
 
@@ -145,7 +149,10 @@ public class IMSGUI {
 			JOptionPane
 					.showMessageDialog(
 							getMainBox(),
-							p.getProductID() + p.getProductName() + p.getStockLevel()	+ " is below the critical stock level!, please order new stock.");
+							p.getProductID()
+									+ p.getProductName()
+									+ p.getStockLevel()
+									+ " is below the critical stock level!, please order new stock.");
 
 		}
 	}
