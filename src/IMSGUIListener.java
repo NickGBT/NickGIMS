@@ -68,7 +68,7 @@ class IMSGUIListener implements ActionListener {
 		case "Refresh table":
 			;
 
-			referencedGUI.updateTable();
+			DatabaseConnection.updateIMSGUI();
 
 			break;
 		}

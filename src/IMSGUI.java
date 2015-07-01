@@ -138,14 +138,14 @@ public class IMSGUI {
 
 	}
 
-	public void belowThresholdAlert(Product p) {
+	public static void belowThresholdAlert(Product p) {
 
 		if (p.getStockLevel() < p.getCriticalStockLevel()) {
 
 			JOptionPane
 					.showMessageDialog(
-							getMainBox(),
-							p.getProductID() + p.getProductName() + p.getStockLevel()	+ " is below the critical stock level!, please order new stock.");
+							null,
+							"ProductID: " + p.getProductID() + ", " + p.getProductName() + "'s Stock: " + p.getStockLevel()	+ " is below the critical stock level!, please order new stock.");
 
 		}
 	}
