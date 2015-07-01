@@ -131,7 +131,7 @@ public class IMSGUI {
 
 		productTableModel.setRowCount(0);
 		// loops through all the rows in the table to refresh them
-		for (Product p : productList) {			
+		for (Product p : productList) {
 
 			productTableModel.addRow(new Object[] { p.getProductID(),
 					p.getProductName(), p.getProductType(), p.getDateAdded(),
@@ -142,7 +142,6 @@ public class IMSGUI {
 
 	}
 
-
 	public static void belowThresholdAlert(Product p) {
 
 		if (p.getStockLevel() < p.getCriticalStockLevel()) {
@@ -151,8 +150,13 @@ public class IMSGUI {
 					.showMessageDialog(
 
 							null,
-							"ProductID: " + p.getProductID() + ", " + p.getProductName() + "'s Stock: " + p.getStockLevel()	+ " is below the critical stock level!, please order new stock.");
-
+							"ProductID: "
+									+ p.getProductID()
+									+ ", "
+									+ p.getProductName()
+									+ "'s Stock: "
+									+ p.getStockLevel()
+									+ " is below the critical stock level!, please order new stock.");
 
 		}
 	}
