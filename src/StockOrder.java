@@ -9,16 +9,16 @@ import java.util.Properties;
 public class StockOrder {
 
 	public static void generateStockOrder() {
-		// returns values from the arrayList that are at the critical stock leve
+		// returns values from the arrayList that are at the critical stock level
 		Properties out = new Properties();
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Calendar rightNow = Calendar.getInstance();
-
+		final int stockMultiplier = 3;
 		for (Product p : Product.allProducts) {
 			if (p.getCriticalStockLevel() >= p.stockLevel) {
 
-				out.setProperty(p.getProductName(), p.getStockLevel() + "");
+				out.setProperty("Product: " + p.getProductName(), "  Current Stock Level: " + p.getStockLevel() + "  Order: " + (p.getCriticalStockLevel() * stockMultiplier));
 			}
 
 		}

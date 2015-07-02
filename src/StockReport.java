@@ -16,7 +16,7 @@ public class StockReport {
 		Calendar rightNow = Calendar.getInstance();
 
 		for (Product p : Product.allProducts) {
-			out.setProperty(p.getProductName(), p.getStockLevel() + "");
+			out.setProperty("Product Name" + p.getProductName(), " Product Stock Level" + p.getStockLevel() + "");
 
 		}
 		;
