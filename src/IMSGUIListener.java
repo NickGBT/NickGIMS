@@ -59,8 +59,15 @@ class IMSGUIListener implements ActionListener {
 
 		case "Simulate stock drop":
 			;
-
-			// RandomStockViewer stock = new RandomStockViewer();
+			
+			//RandomStockViewer graph = new RandomStockViewer(
+			//		Product.allProducts.get(productTable.getSelectedRow()));
+					
+			
+			//graph.setVisible(true);
+			
+			
+			RandomStockViewer.showGraph();
 
 			break;
 

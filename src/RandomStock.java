@@ -40,6 +40,10 @@ public class RandomStock {
 	private static void log(String aMessage) {
 		System.out.println(aMessage);
 	}
+	
+	public int nextRandom() {
+		return stockLevelDecrement;
+	}
 	// random stock generation, set stock level using random decrements to a
 	// current stock value returned from products, send to gui for stock drop
 	// simulation
