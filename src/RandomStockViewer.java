@@ -9,7 +9,6 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -24,8 +23,8 @@ public class RandomStockViewer extends JPanel {
 	private static final Stroke graphStroke = new BasicStroke(3f);
 	private static final int graphPointWidth = 6;
 	private static final int yHatchCount = 10;
-	private List<Integer> stockLevels;
 	private static int numberOfDays = 7;
+	private List<Integer> stockLevels;
 
 	public RandomStockViewer(ArrayList<Product> productList) {
 		RandomStockViewer.productList = productList;
@@ -113,8 +112,8 @@ public class RandomStockViewer extends JPanel {
 		Product p = new Product();
 		stockLevels.add(p.getStockLevel());
 		for (int i = 0; i < numberOfDays; i++) {
-			
-			stockLevels.add((p.stockLevel)-(decrement.nextRandom()));
+
+			stockLevels.add((p.stockLevel) - (decrement.nextRandom()));
 		}
 		RandomStockViewer mainPanel = new RandomStockViewer(productList);
 
@@ -155,6 +154,5 @@ public class RandomStockViewer extends JPanel {
 	public static void setRandomStockNumber(RandomStock randomStockNumber) {
 		RandomStockViewer.randomStockNumber = randomStockNumber;
 	}
-	
 
 }
