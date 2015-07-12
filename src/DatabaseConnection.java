@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DatabaseConnection {
 
@@ -73,6 +74,7 @@ public class DatabaseConnection {
 			Statement s = conn.createStatement();
 			ResultSet rs = s
 					.executeQuery("SELECT * FROM `imsdatabase`.`products`");
+			ArrayList<Product> old = Product.allProducts;
 			Product.allProducts.clear();
 			while (rs.next()) {
 				Product p = new Product();
@@ -88,12 +90,54 @@ public class DatabaseConnection {
 				Product.allProducts.add(p);
 				IMSGUI.belowThresholdAlert(p);
 			}
+			
+			ArrayList<Product> changed = getIncreasedAboveCriticalProducts(old, Product.allProducts);
+			
+			for(Product p : changed)
+			{
+				IMSGUI.stockIncreased(p);
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	private static ArrayList<Product> getIncreasedAboveCriticalProducts(ArrayList<Product> pOld, ArrayList<Product> pNew)
+	{
+		ArrayList<Product> ret = new ArrayList<>();
+		
+		for(Product p : pOld)
+		{
+			Product pOther = getSameProduct(pOld, pNew);
+			
+			if(pOther != null)
+			{
+				if(p.getStockLevel() < pOther.getStockLevel())
+				{
+					ret.add(pOther);
+				}
+			}
+		}
+		
+		return ret;
+	}
+	
+	private static Product getSameProduct(ArrayList<Product> p1, ArrayList<Product> p2)
+	{
+		for(Product p : p2)
+		{
+			for(Product p3 : p1)
+			{
+				if(p3.getProductID() == p.getProductID())
+					return p;
+			}
+		}
+		
+		return null;
+	}
+	
 	/*
 	 * public static void readFromTable(int ProductID, String ProductName,
 	 * String ProductType, String DateLastUpdated, int Cost, int StockLevel, int

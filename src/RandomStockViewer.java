@@ -9,30 +9,30 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class RandomStockViewer extends JPanel {
 
-	private static final int maxProduct = 200;
-	private static final int prefW = 800;
-	private static final int prefH = 650;
-	private static final int borderGap = 30;
-	private static final Color graphColour = Color.red;
-	private static final Color graphPointColour = new Color(150, 50, 50, 180);
-	private static final Stroke graphStroke = new BasicStroke(3f);
-	private static final int graphPointWidth = 6;
-	private static final int yHatchCount = 10;
+	private  final int maxProduct = 200;
+	private  final int prefW = 800;
+	private  final int prefH = 650;
+	private  final int borderGap = 30;
+	private  final Color graphColour = Color.red;
+	private  final Color graphPointColour = new Color(150, 50, 50, 180);
+	private  final Stroke graphStroke = new BasicStroke(3f);
+	private final int graphPointWidth = 6;
+	private final int yHatchCount = 10;
 	private static int numberOfDays = 7;
 	private List<Integer> stockLevels;
-
-	public RandomStockViewer(ArrayList<Product> productList) {
-		RandomStockViewer.productList = productList;
+	private Product product;
+	
+	public RandomStockViewer(Product p, List<Integer> stockLevels) 
+	{
+		product = p;
+		this.stockLevels = stockLevels;
 	}
-
-	private static ArrayList<Product> productList;
-
-	private static RandomStock randomStockNumber;
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -105,17 +105,18 @@ public class RandomStockViewer extends JPanel {
 		return new Dimension(prefW, prefH);
 	}
 
-	@SuppressWarnings("null")
 	protected static void showGraph() {
 		List<Integer> stockLevels = new ArrayList<Integer>();
-		RandomStock decrement = new RandomStock();
+		Random r = new Random();
 		Product p = new Product();
+		p.setStockLevel(50);
 		stockLevels.add(p.getStockLevel());
 		for (int i = 0; i < numberOfDays; i++) {
-
-			stockLevels.add((p.stockLevel) - (decrement.nextRandom()));
+			int lvl = Math.max(0, p.getStockLevel() - (int)(Math.random() * p.getStockLevel()));
+			p.setStockLevel(lvl);
+			stockLevels.add(lvl);
 		}
-		RandomStockViewer mainPanel = new RandomStockViewer(productList);
+		RandomStockViewer mainPanel = new RandomStockViewer(p, stockLevels);
 
 		JFrame frame = new JFrame("DrawGraph");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,18 +125,17 @@ public class RandomStockViewer extends JPanel {
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
 	}
+	
+	public  void productStockDecrementer(Product p) {
 
-	@SuppressWarnings("null")
-	public static void productStockDecrementer(Product p) {
-
-		for (int i = 0; i < productList.size(); i++) {
+		/*for (int i = 0; i < productList.size(); i++) {
 
 			RandomStock randomStockNumber = null;
 
 			p.stockLevel = p.stockLevel - randomStockNumber.stockLevelDecrement;
 
 			productList.set(p.stockLevel, p);
-		}
+		}*/
 
 	}
 
@@ -145,14 +145,6 @@ public class RandomStockViewer extends JPanel {
 				showGraph();
 			}
 		});
-	}
-
-	public static RandomStock getRandomStockNumber() {
-		return randomStockNumber;
-	}
-
-	public static void setRandomStockNumber(RandomStock randomStockNumber) {
-		RandomStockViewer.randomStockNumber = randomStockNumber;
 	}
 
 }

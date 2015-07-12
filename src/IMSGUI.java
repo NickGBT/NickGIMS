@@ -161,4 +161,8 @@ public class IMSGUI {
 		}
 	}
 
+	public static void stockIncreased(Product p) {
+		
+	}
+
 }
