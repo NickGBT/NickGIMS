@@ -1,17 +1,24 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import javax.swing.JTable;
 
 class IMSGUIListener implements ActionListener {
 	private JTable productTable;
 	private IMSGUI referencedGUI;
+	RandomStockViewer graph;
 
-	public IMSGUIListener(JTable productTable, IMSGUI referencedGUI) {
+	public IMSGUIListener(JTable productTable, IMSGUI referencedGUI,
+			RandomStockViewer graph) {
 
 		this.productTable = productTable;
 
 		this.referencedGUI = referencedGUI;
+
+		this.graph = graph;
 
 	}
 
@@ -57,18 +64,22 @@ class IMSGUIListener implements ActionListener {
 
 			break;
 
-		case "Simulate stock drop":
-			;
-			
-			//RandomStockViewer graph = new RandomStockViewer(
-			//		Product.allProducts.get(productTable.getSelectedRow()));
-					
-			
-			//graph.setVisible(true);
-			
-			
-			RandomStockViewer.showGraph();
-
+		case "Show graph":
+			List<Integer> stockLevels = new ArrayList<Integer>();
+			int x = productTable.getSelectedRow();
+			Random r = new Random();
+			Product p = new Product();
+			p.setStockLevel(Product.allProducts.get(productTable
+					.getSelectedRow()).stockLevel);
+			stockLevels.add(p.getStockLevel());
+			for (int i = 0; i < 14; i++) {
+				int lvl = Math.max(0, p.getStockLevel()
+						- (int) (Math.random() * p.getStockLevel()));
+				p.setStockLevel(lvl);
+				stockLevels.add(lvl);
+			}
+			graph.SetOldStockLevels(p, stockLevels);
+			graph.repaint();
 			break;
 
 		case "Refresh table":

@@ -4,6 +4,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 //GUI for the IMS, using swing and JFrames/JPanels to create the interface.
 public class IMSGUI {
@@ -15,7 +17,7 @@ public class IMSGUI {
 	private JButton addButton;
 	private JButton editButton;
 	private JButton generateReportButton;
-	private JButton randomiserButton;
+	private JButton showGraphButton;
 	private JButton refreshButton;
 	private JButton generateStockOrderButton;
 	private ArrayList<Product> productList;
@@ -36,6 +38,7 @@ public class IMSGUI {
 		mainBox.setSize(950, 500);
 		mainBox.setLayout(new GridLayout(3, 0)); // layout setter
 		mainBox.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		RandomStockViewer guiStockViewer = new RandomStockViewer();
 
 		// adding the components to the GUI
 		frameLabel = new JLabel("", JLabel.CENTER);
@@ -68,9 +71,9 @@ public class IMSGUI {
 		productTable.getColumnModel().getColumn(6).setPreferredWidth(150);
 		productTable.getColumnModel().getColumn(7).setPreferredWidth(150);
 		productTable.getColumnModel().getColumn(8).setPreferredWidth(100);
-
+		
 		// Adding the buttonListener
-		buttonListener = new IMSGUIListener(productTable, this);
+		buttonListener = new IMSGUIListener(productTable, this, guiStockViewer);
 
 		// Adding the scrollPane for the productTable
 		scrollPane = new JScrollPane(productTable);
@@ -82,8 +85,8 @@ public class IMSGUI {
 		editButton.addActionListener(buttonListener);
 		generateReportButton = new JButton("Generate Report");
 		generateReportButton.addActionListener(buttonListener);
-		randomiserButton = new JButton("Simulate stock drops");
-		randomiserButton.addActionListener(buttonListener);
+		showGraphButton = new JButton("Show graph");
+		showGraphButton.addActionListener(buttonListener);
 		refreshButton = new JButton("Refresh table");
 		refreshButton.addActionListener(buttonListener);
 		generateStockOrderButton = new JButton("Generate stock order");
@@ -95,12 +98,13 @@ public class IMSGUI {
 		mainBox.add(scrollPane);
 		mainBox.add(frameLabel);
 		mainBox.add(controlPanel);
+		mainBox.add(guiStockViewer);
 		controlPanel.add(addButton);
 		controlPanel.add(editButton);
 		controlPanel.add(generateReportButton);
-		controlPanel.add(randomiserButton);
 		controlPanel.add(refreshButton);
 		controlPanel.add(generateStockOrderButton);
+		controlPanel.add(showGraphButton);
 		controlPanel.setSize(600, 100);
 		mainBox.setVisible(true);
 

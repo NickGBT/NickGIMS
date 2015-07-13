@@ -28,7 +28,7 @@ public class RandomStockViewer extends JPanel {
 	private List<Integer> stockLevels;
 	private Product product;
 	
-	public RandomStockViewer(Product p, List<Integer> stockLevels) 
+	public void SetOldStockLevels(Product p, List<Integer> stockLevels) 
 	{
 		product = p;
 		this.stockLevels = stockLevels;
@@ -37,6 +37,9 @@ public class RandomStockViewer extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		if (product == null){
+			return;
+		}				
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
@@ -116,8 +119,8 @@ public class RandomStockViewer extends JPanel {
 			p.setStockLevel(lvl);
 			stockLevels.add(lvl);
 		}
-		RandomStockViewer mainPanel = new RandomStockViewer(p, stockLevels);
-
+		RandomStockViewer mainPanel = new RandomStockViewer();
+		mainPanel.SetOldStockLevels(p, stockLevels);
 		JFrame frame = new JFrame("DrawGraph");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(mainPanel);
