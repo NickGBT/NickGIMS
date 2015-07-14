@@ -1,6 +1,7 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -15,15 +16,17 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class RandomStockViewer extends JPanel {
 
-	private  final int maxProduct = 200;
+	private  final int maxProduct = 450; //(product.getStockLevel() + product.getStockLevel * 0.1);
 	private  final int prefW = 800;
 	private  final int prefH = 650;
+    private int labelPadding = 25;
 	private  final int borderGap = 30;
 	private  final Color graphColour = Color.red;
 	private  final Color graphPointColour = new Color(150, 50, 50, 180);
 	private  final Stroke graphStroke = new BasicStroke(3f);
+	private Color gridColor = new Color(200, 200, 200, 200);
 	private final int graphPointWidth = 6;
-	private final int yHatchCount = 10;
+	private int yHatchCount = 10; //product.getStockLevel();
 	private static int numberOfDays = 7;
 	private List<Integer> stockLevels;
 	private Product product;
@@ -44,18 +47,22 @@ public class RandomStockViewer extends JPanel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		double xScale = ((double) getWidth() - 2 * borderGap)
+		double xScale = ((double) getWidth() - (2 * borderGap) - labelPadding)
 				/ (stockLevels.size() - 1);
-		double yScale = ((double) getHeight() - 2 * borderGap)
+		double yScale = ((double) getHeight() - (2 * borderGap) - labelPadding)
 				/ (maxProduct - 1);
 
 		List<Point> graphPoints = new ArrayList<Point>();
 		for (int i = 0; i < stockLevels.size(); i++) {
-			int x1 = (int) (i * xScale + borderGap);
+			int x1 = (int) (i * xScale + borderGap + labelPadding);
 			int y1 = (int) ((maxProduct - stockLevels.get(i)) * yScale + borderGap);
 			graphPoints.add(new Point(x1, y1));
 		}
-
+		// set background
+		g2.setColor(Color.WHITE);
+		g2.fillRect(borderGap + labelPadding, borderGap, getWidth() - (2 * borderGap) - labelPadding, getHeight() - 2 * borderGap - labelPadding);
+		g2.setColor(Color.BLACK);
+		
 		// create x and y axes
 		g2.drawLine(borderGap, getHeight() - borderGap, borderGap, borderGap);
 		g2.drawLine(borderGap, getHeight() - borderGap, getWidth() - borderGap,
@@ -68,6 +75,15 @@ public class RandomStockViewer extends JPanel {
 			int y0 = getHeight()
 					- (((i + 1) * (getHeight() - borderGap * 2)) / yHatchCount + borderGap);
 			int y1 = y0;
+			if (stockLevels.size() > 0) {
+				g2.setColor(gridColor);
+				g2.drawLine(borderGap + labelPadding + 1 + graphPointWidth, y0, getWidth() - borderGap, y1);
+				g2.setColor(Color.BLACK);
+				String yLabel = ((int) ((getMinStockLevel() + getMaxStockLevel() - getMinStockLevel()) * ((i * 1.0 / yHatchCount)) * 100)) / 100.0 + "";
+						FontMetrics metrics = g2.getFontMetrics();
+						int labelWidth = metrics.stringWidth(yLabel);
+						g2.drawString(yLabel, x0 - labelWidth - 5, y0 + (metrics.getHeight() / 2) - 3);
+			}
 			g2.drawLine(x0, y0, x1, y1);
 		}
 
@@ -107,6 +123,22 @@ public class RandomStockViewer extends JPanel {
 	public Dimension getPreferredSize() {
 		return new Dimension(prefW, prefH);
 	}
+	
+    private double getMinStockLevel() {
+        double minStock = Double.MAX_VALUE;
+        for (Integer stockLevel : stockLevels) {
+            minStock = Math.min(minStock, stockLevel);
+        }
+        return minStock;
+    }
+
+    private double getMaxStockLevel() {
+        double maxStock = Double.MIN_VALUE;
+        for (Integer stockLevel : stockLevels) {
+            maxStock = Math.max(maxStock, stockLevel);
+        }
+        return maxStock;
+    }
 
 	protected static void showGraph() {
 		List<Integer> stockLevels = new ArrayList<Integer>();
@@ -127,27 +159,6 @@ public class RandomStockViewer extends JPanel {
 		frame.pack();
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
-	}
-	
-	public  void productStockDecrementer(Product p) {
-
-		/*for (int i = 0; i < productList.size(); i++) {
-
-			RandomStock randomStockNumber = null;
-
-			p.stockLevel = p.stockLevel - randomStockNumber.stockLevelDecrement;
-
-			productList.set(p.stockLevel, p);
-		}*/
-
-	}
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				showGraph();
-			}
-		});
 	}
 
 }

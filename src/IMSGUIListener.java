@@ -74,7 +74,7 @@ class IMSGUIListener implements ActionListener {
 			stockLevels.add(p.getStockLevel());
 			for (int i = 0; i < 14; i++) {
 				int lvl = Math.max(0, p.getStockLevel()
-						- (int) (Math.random() * p.getStockLevel()));
+						- (int) (Math.random() * 10));
 				p.setStockLevel(lvl);
 				stockLevels.add(lvl);
 			}

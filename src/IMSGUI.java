@@ -36,7 +36,7 @@ public class IMSGUI {
 
 		mainBox = new JFrame("Inventory Management System");
 		mainBox.setSize(950, 500);
-		mainBox.setLayout(new GridLayout(3, 0)); // layout setter
+		mainBox.setLayout(new GridLayout(0, 2)); // layout setter
 		mainBox.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		RandomStockViewer guiStockViewer = new RandomStockViewer();
 
@@ -97,8 +97,8 @@ public class IMSGUI {
 		// Adding components to the mainBox, scrollPane for the JTable.
 		mainBox.add(scrollPane);
 		mainBox.add(frameLabel);
-		mainBox.add(controlPanel);
 		mainBox.add(guiStockViewer);
+		mainBox.add(controlPanel);
 		controlPanel.add(addButton);
 		controlPanel.add(editButton);
 		controlPanel.add(generateReportButton);
