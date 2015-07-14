@@ -36,7 +36,7 @@ public class IMSGUI {
 
 		mainBox = new JFrame("Inventory Management System");
 		mainBox.setSize(950, 500);
-		mainBox.setLayout(new GridLayout(0, 2)); // layout setter
+		mainBox.setLayout(new GridLayout(0, 2)); // layout setter // change to spring layout
 		mainBox.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		RandomStockViewer guiStockViewer = new RandomStockViewer();
 
@@ -126,6 +126,11 @@ public class IMSGUI {
 
 	// Main method to call the arrayList and other components.
 	public static void main(String args[]) {
+		try{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e){
+			
+		}
 		DatabaseConnection.connectToDatabase();
 		IMSGUI sD = new IMSGUI(Product.allProducts);
 	}

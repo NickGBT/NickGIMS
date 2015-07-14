@@ -71,7 +71,9 @@ class IMSGUIListener implements ActionListener {
 			Product p = new Product();
 			p.setStockLevel(Product.allProducts.get(productTable
 					.getSelectedRow()).stockLevel);
+			
 			stockLevels.add(p.getStockLevel());
+			
 			for (int i = 0; i < 14; i++) {
 				int lvl = Math.max(0, p.getStockLevel()
 						- (int) (Math.random() * 10));
