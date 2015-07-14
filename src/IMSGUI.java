@@ -1,8 +1,12 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -35,8 +39,8 @@ public class IMSGUI {
 	private void prepareGUI() {
 
 		mainBox = new JFrame("Inventory Management System");
-		mainBox.setSize(950, 500);
-		mainBox.setLayout(new GridLayout(0, 2)); // layout setter // change to spring layout
+		mainBox.setSize(1200, 500);
+		mainBox.setLayout(new BorderLayout ()); // layout setter // change to spring layout
 		mainBox.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		RandomStockViewer guiStockViewer = new RandomStockViewer();
 
@@ -64,19 +68,22 @@ public class IMSGUI {
 		productTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		productTable.getColumnModel().getColumn(0).setPreferredWidth(27);
 		productTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-		productTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+		productTable.getColumnModel().getColumn(2).setPreferredWidth(50);
 		productTable.getColumnModel().getColumn(3).setPreferredWidth(100);
 		productTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-		productTable.getColumnModel().getColumn(5).setPreferredWidth(100);
-		productTable.getColumnModel().getColumn(6).setPreferredWidth(150);
-		productTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+		productTable.getColumnModel().getColumn(5).setPreferredWidth(40);
+		productTable.getColumnModel().getColumn(6).setPreferredWidth(80);
+		productTable.getColumnModel().getColumn(7).setPreferredWidth(100);
 		productTable.getColumnModel().getColumn(8).setPreferredWidth(100);
 		
 		// Adding the buttonListener
 		buttonListener = new IMSGUIListener(productTable, this, guiStockViewer);
 
 		// Adding the scrollPane for the productTable
-		scrollPane = new JScrollPane(productTable);
+		scrollPane = new JScrollPane(productTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollBar bar = scrollPane.getVerticalScrollBar();
+		bar.setPreferredSize(new Dimension(40,0));
+		scrollPane.setPreferredSize(new Dimension(700, 50));
 
 		// Adding buttons
 		addButton = new JButton("Add");
@@ -92,13 +99,13 @@ public class IMSGUI {
 		generateStockOrderButton = new JButton("Generate stock order");
 		generateStockOrderButton.addActionListener(buttonListener);
 		controlPanel = new JPanel();
-		controlPanel.setLayout(new FlowLayout());
+		controlPanel.setLayout(new GridLayout(3,0));
 
 		// Adding components to the mainBox, scrollPane for the JTable.
-		mainBox.add(scrollPane);
+		mainBox.add(scrollPane,BorderLayout.WEST);
 		mainBox.add(frameLabel);
-		mainBox.add(guiStockViewer);
-		mainBox.add(controlPanel);
+		mainBox.add(guiStockViewer,BorderLayout.EAST);
+		mainBox.add(controlPanel,BorderLayout.PAGE_END);
 		controlPanel.add(addButton);
 		controlPanel.add(editButton);
 		controlPanel.add(generateReportButton);

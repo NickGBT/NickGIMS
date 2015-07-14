@@ -17,8 +17,8 @@ import javax.swing.*;
 public class RandomStockViewer extends JPanel {
 
 	private  int maxProduct = 450;
-	private  final int prefW = 800;
-	private  final int prefH = 650;
+	private  final int prefW = 475;
+	private  final int prefH = 500;
     private int labelPadding = 25;
 	private  final int borderGap = 30;
 	private  final Color graphColour = Color.red;
