@@ -30,38 +30,33 @@ class IMSGUIListener implements ActionListener {
 		switch (command) {
 
 		case "Add":
-			;
-
 			ProductModifierGUI modifier = new ProductModifierGUI();
-
 			modifier.setVisible(true);
-
-			Product.allProducts.add(modifier.getProduct());
-
-			DatabaseConnection.insertDatabase(modifier.getProduct());
 			
+			if(!modifier.WasOK())
+				return;
+			
+			Product.allProducts.add(modifier.getProduct());
+			DatabaseConnection.insertDatabase(modifier.getProduct());
 			break;
 
 		case "Edit":
-			;
-
 			ProductModifierGUI editor = new ProductModifierGUI(
 					Product.allProducts.get(productTable.getSelectedRow()));
-
 			editor.setVisible(true);
 
+			if(!editor.WasOK())
+				return;
+			
 			DatabaseConnection.updateDatabase(editor.getProduct());
-
 			Product.allProducts.set(productTable.getSelectedRow(),
 					editor.getProduct());
-
 			break;
 
 		case "Generate Report":
 			productTable.getSelectedRow();
 
 			StockReport.generateReport();
-
 			break;
 
 		case "Show graph":
