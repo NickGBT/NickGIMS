@@ -39,7 +39,7 @@ class IMSGUIListener implements ActionListener {
 			Product.allProducts.add(modifier.getProduct());
 
 			DatabaseConnection.insertDatabase(modifier.getProduct());
-
+			
 			break;
 
 		case "Edit":

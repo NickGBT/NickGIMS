@@ -16,7 +16,7 @@ public class StockReport {
 		Calendar rightNow = Calendar.getInstance();
 
 		for (Product p : Product.allProducts) {
-			out.setProperty("Product Name" + p.getProductName(), " Product Stock Level" + p.getStockLevel() + "");
+			out.setProperty("Product Name: " + p.getProductName() + "\t\t" + " Product Stock Level: " + p.getStockLevel() + "", p.getDateLastUpdated());
 
 		}
 		;
@@ -35,3 +35,7 @@ public class StockReport {
 
 	}
 }
+
+//DataOutputStream dataOut = new DataOutputStream(new FileOutputStream((dateFormat.format(rightNow.getTime()))+ " Report.txt"));
+//dataOut.writeUTF("    Stock Report for " + (dateFormat.format(rightNow.getTime())));
+//dataOut.writeUTF("Product Name: " + p.getProductName() + "\t\t\t" + "Product Type: "+ p.getProductType() + "\t\t\t"+ "Stock Level: " + p.getStockLevel());

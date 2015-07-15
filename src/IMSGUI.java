@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -63,6 +66,41 @@ public class IMSGUI {
 
 		// adding the JTable
 		productTable = new JTable(productTableModel);
+		
+		productTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+		    public Component getTableCellRendererComponent(JTable table,
+		            Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+		        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+		        int prID = (int)table.getModel().getValueAt(row, 0);
+		        int quantity = (int)table.getModel().getValueAt(row, 6);
+		        Product foundPr = findProductById(prID);
+		        
+		        if(foundPr != null){
+		        	if ((quantity) <= (1.5 * foundPr.getCriticalStockLevel())) {
+			            setBackground(Color.ORANGE);
+			            setForeground(Color.WHITE);
+		        	}
+		        	
+		        	if ((quantity) < foundPr.getCriticalStockLevel()) {
+			            setBackground(Color.RED);
+			            setForeground(Color.WHITE);
+			        }
+
+		        	else {
+			            setBackground(table.getBackground());
+			            setForeground(table.getForeground()); 
+			        }       
+		        }
+		        
+		        
+		        return this;
+		    }   
+		});
 
 		// setting minimum width for the table columns
 		productTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -126,6 +164,16 @@ public class IMSGUI {
 	public IMSGUI getGUI() {
 		return this;
 	}
+	
+	public Product findProductById(int productID){
+		for(Product pr: productList){
+			if(pr.getProductID() == (productID)){
+				return pr;
+			}
+		}
+		
+		return null;
+	}
 
 	public IMSGUI() {
 		prepareGUI();
@@ -161,18 +209,7 @@ public class IMSGUI {
 	public static void belowThresholdAlert(Product p) {
 
 		if (p.getStockLevel() < p.getCriticalStockLevel()) {
-
-			JOptionPane
-					.showMessageDialog(
-
-							null,
-							"ProductID: "
-									+ p.getProductID()
-									+ ", "
-									+ p.getProductName()
-									+ "'s Stock: "
-									+ p.getStockLevel()
-									+ " is below the critical stock level!, please order new stock.");
+			
 
 		}
 	}

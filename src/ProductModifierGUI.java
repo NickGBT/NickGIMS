@@ -1,10 +1,13 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,6 +44,8 @@ public class ProductModifierGUI extends JDialog {
 	private JTextField stockTextBox;
 	private JTextField criticalStockTextBox;
 	private JTextField supplierTextBox;
+	private JButton okButton;
+	private JButton cancelButton;
 
 	public ProductModifierGUI(Product product) {
 
@@ -56,7 +61,7 @@ public class ProductModifierGUI extends JDialog {
 
 		mainBox = new JFrame();
 
-		mainBox.setLayout(new GridLayout(3, 0));
+		mainBox.setLayout(new GridLayout(0, 2));
 
 		this.prepareGUI();
 
@@ -68,7 +73,7 @@ public class ProductModifierGUI extends JDialog {
 
 		this.setModal(true);
 
-		this.setLayout(new GridLayout(3, 3));
+		this.setLayout(new GridLayout(0, 2));
 
 		this.add(new JLabel("Name"));
 		nameTextBox = new JTextField(product.getProductName());
@@ -100,7 +105,19 @@ public class ProductModifierGUI extends JDialog {
 		supplierTextBox = new JTextField(product.getSupplier());
 		this.add(supplierTextBox);
 		supplierTextBox.setPreferredSize(new Dimension(100, 15));
-
+		
+		this.add (new JButton("OK"));
+		okButton = new JButton();
+		//this.add(okButton);
+		
+		this.add (new JButton("Cancel"));
+		cancelButton = new JButton();
+		cancelButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				mainBox.dispose();				
+			}
+		});
 	}
-
 }

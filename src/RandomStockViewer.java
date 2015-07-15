@@ -35,7 +35,7 @@ public class RandomStockViewer extends JPanel {
 	{
 		product = p;
 		this.stockLevels = stockLevels;
-		maxProduct = 5				;//(int)((float)stockLevels.get(0) * 1.1);
+		maxProduct = (int)((float)stockLevels.get(0) * 1.1);
 	}
 
 	@Override
