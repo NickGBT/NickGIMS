@@ -45,7 +45,7 @@ public class IMSGUI {
 		mainBox.setSize(1200, 500);
 		mainBox.setLayout(new BorderLayout ()); // layout setter // change to spring layout
 		mainBox.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		RandomStockViewer guiStockViewer = new RandomStockViewer();
+		GraphDrawer guiStockViewer = new GraphDrawer();
 
 		// adding the components to the GUI
 		frameLabel = new JLabel("", JLabel.CENTER);

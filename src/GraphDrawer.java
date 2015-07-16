@@ -14,7 +14,7 @@ import java.util.Random;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class RandomStockViewer extends JPanel {
+public class GraphDrawer extends JPanel {
 
 	private  int maxProduct = 450;
 	private  final int prefW = 475;
@@ -29,11 +29,8 @@ public class RandomStockViewer extends JPanel {
 	private int yHatchCount = 14;
 	private static int numberOfDays = 7;
 	private List<Integer> stockLevels;
-	private Product product;
-	
 	public void SetOldStockLevels(Product p, List<Integer> stockLevels) 
 	{
-		product = p;
 		this.stockLevels = stockLevels;
 		maxProduct = (int)((float)stockLevels.get(0) * 1.1);
 	}
@@ -156,7 +153,7 @@ public class RandomStockViewer extends JPanel {
 			p.setStockLevel(lvl);
 			stockLevels.add(lvl);
 		}
-		RandomStockViewer mainPanel = new RandomStockViewer();
+		GraphDrawer mainPanel = new GraphDrawer();
 		mainPanel.SetOldStockLevels(p, stockLevels);
 		JFrame frame = new JFrame("DrawGraph");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

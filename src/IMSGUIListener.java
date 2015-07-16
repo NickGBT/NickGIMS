@@ -9,10 +9,10 @@ import javax.swing.JTable;
 class IMSGUIListener implements ActionListener {
 	private JTable productTable;
 	private IMSGUI referencedGUI;
-	RandomStockViewer graph;
+	GraphDrawer graph;
 
 	public IMSGUIListener(JTable productTable, IMSGUI referencedGUI,
-			RandomStockViewer graph) {
+			GraphDrawer graph) {
 
 		this.productTable = productTable;
 

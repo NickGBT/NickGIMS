@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Product {
-	private String productName;
-	private String productType;
-	private String supplier;
+	String productName;
+	String productType;
+	String supplier;
 	private int productID;
 	int stockLevel;
 	private int criticalStockLevel;

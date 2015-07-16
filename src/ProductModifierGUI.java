@@ -9,8 +9,8 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
@@ -20,7 +20,7 @@ public class ProductModifierGUI extends JDialog {
 	static Date date = new Date();
 	Calendar rightNow = Calendar.getInstance();
 	private Product product;
-	private ProductModifierGUI me;
+	private ProductModifierGUI guiInstance;
 	private boolean OK = false;
 	
 	public boolean WasOK()
@@ -33,14 +33,31 @@ public class ProductModifierGUI extends JDialog {
 		// get the values from text boxes, integer values must be passed from a
 		// string to an int
 		product.setProductName(nameTextBox.getText());
+		
+		if (product.productName.matches("")){
+			JOptionPane.showMessageDialog(null, "product name must be entered");
+			return null;
+		}
 		product.setProductType(typeTextBox.getText());
+		
+		if (product.productType.matches("")){
+			JOptionPane.showMessageDialog(null, "product type must be entered");
+			return null;
+		}
 		product.setCost(Integer.parseInt(costTextBox.getText()));
 		product.setStockLevel(Integer.parseInt(stockTextBox.getText()));
 		product.setCriticalStockLevel(Integer.parseInt(criticalStockTextBox
 				.getText()));
 		product.setSupplier(supplierTextBox.getText());
+		
+		if (product.supplier.matches("")){
+			JOptionPane.showMessageDialog(null, "product supplier must be entered");
+			return null;
+		}
+		
 		product.setDateLastUpdated(dateFormat.format(rightNow.getTime()));
 		return product;
+		
 
 	}
 
@@ -54,19 +71,18 @@ public class ProductModifierGUI extends JDialog {
 	private JButton cancelButton;
 
 	public ProductModifierGUI(Product product) {
-		me = this;
+		guiInstance = this;
 		this.product = product;
 
 		this.prepareGUI();
 	};
 
 	public ProductModifierGUI() {
-		me = this;
+		guiInstance = this;
 		product = new Product();
 
 		this.prepareGUI();
 	}
-
 	private void prepareGUI() {
 		this.setSize(1000, 200);
 
@@ -78,11 +94,11 @@ public class ProductModifierGUI extends JDialog {
 		nameTextBox = new JTextField(product.getProductName());
 		this.add(nameTextBox);
 		nameTextBox.setPreferredSize(new Dimension(100, 15));
-
+		
 		this.add(new JLabel("Type"));
 		typeTextBox = new JTextField(product.getProductType());
 		this.add(typeTextBox);
-		typeTextBox.setPreferredSize(new Dimension(100, 15));
+		typeTextBox.setPreferredSize(new Dimension(100, 15));		
 
 		this.add(new JLabel("Cost"));
 		costTextBox = new JTextField(product.getCost() + "");
@@ -104,7 +120,7 @@ public class ProductModifierGUI extends JDialog {
 		supplierTextBox = new JTextField(product.getSupplier());
 		this.add(supplierTextBox);
 		supplierTextBox.setPreferredSize(new Dimension(100, 15));
-
+		
 		// this.add (new JButton("OK"));
 		okButton = new JButton("OK");
 
@@ -113,7 +129,7 @@ public class ProductModifierGUI extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OK = true;
-				me.dispose();
+				guiInstance.dispose();
 			}
 		});
 		
@@ -122,7 +138,7 @@ public class ProductModifierGUI extends JDialog {
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				me.dispose();
+				guiInstance.dispose();
 			}
 		});
 		
